@@ -5,6 +5,6 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
-  get '/hi there'
-
+  get 'welcome/contact'
+  
 end
