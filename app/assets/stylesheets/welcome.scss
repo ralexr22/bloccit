@@ -16,11 +16,25 @@ h1 {
 }
 
 section {
-  background: #5998ff;
+  background: #165AD1;
   border-style: solid;
   border-width: 2px;
   margin: 5px 5px 5px 5px;
   padding: 5px 5px 5px 5px;
+}
+
+.social-btn {
+  position: absolute;
+  border: 2px solid #165AD1;
+	top: 200px;
+	right: 100px;
+  bottom: 100px;
+  left: 400px;
+	width: 80px;
+	height: 35px;
+	background: black;
+  padding: 5px;
+  margin: 20px;
 }
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
