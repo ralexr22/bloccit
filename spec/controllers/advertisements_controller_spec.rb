@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe AdvertisementController, type: :controller do
+RSpec.describe AdvertisementsController, type: :controller do
 
   let(:my_advertisement) {Advertisement.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph)}
 

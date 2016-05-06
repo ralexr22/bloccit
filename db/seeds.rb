@@ -23,8 +23,9 @@ puts "#{Comment.count} comments created"
 
 10.times do
   Advertisement.create!(
-  title: RandomData.random_sentence
-  body: RandomData.random_data
+  title: RandomData.random_sentence,
+  body: RandomData.random_paragraph
   )
 end
-advertisement = Advertisement.all
+
+advertisements = Advertisement.all
