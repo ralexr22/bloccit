@@ -4,7 +4,6 @@
 <%= link_to "Delete Topic", @topic, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this topic?' } %>
 <div class="row">
   <div class="col-md-8">
-    <p class="lead"><%= @topic.description %></p>
     <% @topic.posts.each do |post| %>
       <div class="media">
         <div class="media-body">
@@ -21,5 +20,24 @@
   </div>
   <div class="col-md-4">
     <%= link_to "New Post", new_topic_post_path(@topic), class: 'btn btn-success' %>
+    <div class="col-md-8">
+    <%= link_to "New Sponsored Post", new_topic_sponsored_post_path(@topic), class: 'btn btn-primary' %>
+    </div>
   </div>
+
+  <div class="row">
+    <div class="col-md-8">
+      <h4>
+        <u>Sponsored Posts</u>
+      </h4>
+      <% @topic.sponsored_posts.each do |s| %>
+        <div class="media">
+          <div class="media-body">
+            <h4 class="media-heading">
+              <%= link_to s.title, topic_sponsored_post_path(@topic, s) %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
 </div>
