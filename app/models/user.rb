@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   before_save { self.email = email.downcase if email.present? }
-  before_save { self.email = email.capitalize_names if name.present? }
+  before_save { self.name = name.capitalize_names if name.present? }
 
   def capitalize_names
     name.split.each do |user|
