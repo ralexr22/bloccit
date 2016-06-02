@@ -24,7 +24,7 @@ describe "attributes" do
   end
 
   it "formats the name correctly" do
-    user = User.create(name: 'bloccit member', email: 'youremail@example.com', password: '12345')
+    user = User.create(name: 'bloccit member', email: 'youremail@example.com', password: '123456')
     expect(user.name).to eq('Bloccit Member')
   end
  end

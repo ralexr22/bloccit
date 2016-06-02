@@ -1,13 +1,13 @@
 class User < ActiveRecord::Base
   before_save { self.email = email.downcase if email.present? }
-  before_save { self.name = name.capitalize_names if name.present? }
+  before_save { self.name = self.capitalize_names if name.present? }
 
   def capitalize_names
-    name.split.each do |user|
-      user.capitalize
+    fixed_name = name.split.map do |word|
+      word.capitalize
     end
 
-    name = capitalize_names.join(" ")
+    fixed_name.join(" ")
   end
 
   validates :name, length: { minimum: 1, maximum: 100 }, presence: true
