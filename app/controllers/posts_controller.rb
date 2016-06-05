@@ -52,7 +52,6 @@ class PostsController < ApplicationController
       flash.now[:alert] = "There was an error deleting the post."
       render :show
     end
-  end
 
   private
 
