@@ -4,9 +4,8 @@ RSpec.describe User, type: :model do
 let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "password")}
 it { is_expected.to have_many(:posts) }
 # Shoulda tests for name
-it { is_expected.to validate_presence_of(:name) }
+it { is_expected.to validate_presence_of(:name)}
 it { is_expected.to validate_length_of(:name).is_at_least(1) }
-
 
 # Shoulda tests for email
 it { is_expected.to validate_presence_of(:email) }
@@ -20,15 +19,6 @@ it { is_expected.to have_secure_password }
 it { is_expected.to validate_length_of(:password).is_at_least(6)}
 
 describe "attributes" do
-  it "should have name and email attributes" do
-    expect(user).to have_attributes(name: "Bloccit User", email: "user@bloccit.com")
-  end
-
-  it "formats the name correctly" do
-    user = User.create(name: 'bloccit member', email: 'youremail@example.com', password: '123456')
-    expect(user.name).to eq('Bloccit Member')
-  end
-
   it "responds to role" do
     expect(user).to respond_to(:role)
   end
@@ -40,39 +30,40 @@ describe "attributes" do
   it "responds to member?" do
     expect(user).to respond_to(:member?)
   end
- end
 
- describe "roles" do
-
+describe "roles" do
   it "is member by default" do
-   expect(user.role).to eq("member")
- end
+    expect(user.role).to eq("member")
+  end
   context "member user" do
-     it "returns true for #member?" do
-       expect(user.member?).to be_truthy
-     end
+    it "returns true for #member?" do
+      expect(user.member?).to be_truthy
+    end
 
-     it "returns false for #admin?" do
-       expect(user.admin?).to be_falsey
-     end
-   end
+    it "returns false for #admin?" do
+      expect(user.admin?).to be_falsey
+    end
+  end
 
-   context "admin user" do
-      before do
-         user.admin!
-       end
+  context "admin user" do
+    before do
+      user.admin!
+    end
 
-       it "returns false for #member?" do
-         expect(user.member?).to be_falsey
-       end
+    it "returns false for #member?" do
+      expect(user.member?).to be_falsey
+    end
 
-       it "returns true for #admin?" do
-         expect(user.admin?).to be_truthy
-       end
-     end
-   end
+    it "returns true for #admin?" do
+      expect(user.admin?).to be_truthy
+    end
+  end
+end
 
-
+  it "should have name and email attributes" do
+    expect(user).to have_attributes(name: "Bloccit User", email: "user@bloccit.com")
+  end
+ end
 
 describe "invalid user" do
   let(:user_with_invalid_name) { User.new(name: "", email: "user@bloccit.com")}
