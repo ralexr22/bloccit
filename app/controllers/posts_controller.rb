@@ -70,7 +70,7 @@ class PostsController < ApplicationController
    end
  end
 
- def moderater_user
+ def moderator_user
    post = Post.find(params[:id])
    unless current_user == post.user || current_user.admin? || current_user.moderator?
      flash[:alert] = "You can't do that."
