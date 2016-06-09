@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   end
 
   has_many :posts
+  has_many :comments 
 
   before_save { self.email = email.downcase if email.present? }
 
