@@ -106,4 +106,10 @@ RSpec.describe CommentsController, type: :controller do
       end
     end
   end
+
+describe Commenting, type: :model do
+  it { is_expected.to have_many :commentings }
+  it { is_expected.to have_many(:topics).through(:commentings) }
+  it { is_expected.to have_many(:posts).through(:commentings) }
+ end
 end
