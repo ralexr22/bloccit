@@ -2,6 +2,8 @@ class Post < ActiveRecord::Base
   belongs_to :topic
   belongs_to :user
   has_many :comments, dependent: :destroy
+  has_many :labelings, as: :labelable
+  has_many :labels, through: :labelings
 
   default_scope { order('created_at DESC') }
 
@@ -10,7 +12,6 @@ class Post < ActiveRecord::Base
   validates :topic, presence: true
   validates :user, presence: true
 
-  scope :ordered_by_title, -> { order ('title DESC') }
-  scope :ordered_by_reverse_created_at, -> { order ('created ASC') }
-
+  scope :ordered_by_title, -> { order 'title DESC' }
+  scope :ordered_by_reverse_created_at, -> { order 'created ASC' }
 end
