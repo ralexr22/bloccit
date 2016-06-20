@@ -11,7 +11,13 @@
       <%= render partial: "labels/list", locals: { labels: @topic.labels } %>
       <br />
       <%= @topic.description %>
-    </p>    <% @topic.posts.each do |post| %>
+    </p>
+    <h3>Comments</h3>
+    <% @topic.comments.each do |comment| %>
+      <%= render partial: "comments/comment", locals: { resource: @topic, comment: comment } %>
+    <% end %>
+    <h3>Posts</h3>
+    <% @topic.posts.each do |post| %>
       <div class="media">
         <div class="media-body">
           <h4 class="media-heading">
@@ -30,5 +36,6 @@
   <div class="col-md-4">
     <%= link_to "New Post", new_topic_post_path(@topic), class: 'btn btn-success' %>
   </div>
+   <%= render 'comments/form', comment: Comment.new, resource: @topic %>
   <% end %>
 </div>

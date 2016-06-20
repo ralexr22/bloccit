@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-md-8">
+    <h1>Comment: <%= @comment.name %></h1>
+    <% @comment.topics.each do |topic| %>
+      <div>
+        Topic: <%= link_to topic.name, topic %>
+      </div>
+    <% end %>
+    <% @comment.posts.each do |post| %>
+      <div>
+        Comment: <%= link_to post.title, topic_post_path(post.topic, post) %>
+      </div>
+    <% end %>
+  </div>
+</div>
