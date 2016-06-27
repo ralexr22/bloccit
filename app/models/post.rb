@@ -31,6 +31,14 @@ class Post < ActiveRecord::Base
     update_attribute(:rank, new_rank)
   end
 
+  after_create :create_vote
+
   scope :ordered_by_title, -> { order 'title DESC' }
   scope :ordered_by_reverse_created_at, -> { order 'created ASC' }
+
+private
+  def create_vote
+   user.votes.create(value: 1)
+   @post = self
+  end
 end

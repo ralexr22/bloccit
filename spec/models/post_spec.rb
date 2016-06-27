@@ -77,4 +77,11 @@ RSpec.describe Post, type: :model do
       end
     end
   end
+
+  describe "create_vote" do
+    it "creates a new vote when a post is created" do
+      expect(user.votes.create).to eq(1)
+      user.votes.create!(value: 1)
+    end
+  end
 end
