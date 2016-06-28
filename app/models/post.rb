@@ -5,7 +5,9 @@ class Post < ActiveRecord::Base
   has_many :votes, dependent: :destroy
   has_many :labelings, as: :labelable
   has_many :labels, through: :labelings
-  has_many :favorites, dependent: :destroy 
+  has_many :favorites, dependent: :destroy
+
+  after_create :create_favorite, :send_user_email
 
   default_scope { order('rank DESC') }
 
@@ -32,6 +34,19 @@ class Post < ActiveRecord::Base
     update_attribute(:rank, new_rank)
   end
 
+
   scope :ordered_by_title, -> { order 'title DESC' }
   scope :ordered_by_reverse_created_at, -> { order 'created ASC' }
+
+private
+
+ def create_favorite
+   post.user.create
+ end
+
+ def send_user_email
+   post.favorites.each do |favorite|
+     FavoriteMailer.new_post(favorite.user, post, self).deliver_now
+  end 
+ end
 end

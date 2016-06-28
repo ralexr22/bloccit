@@ -12,5 +12,15 @@ class FavoriteMailer < ApplicationMailer
     @comment = comment
 
     mail(to: user.email, subject: "New comment on #{post.title}")
-  end 
+  end
+
+  def new_post(user, post)
+
+    headers["Message-ID"] = "<post/#{post.id}@warm-sierra-79905.herokuapp.com>"
+
+    @user = post
+    @post = post
+
+    mail(to: user.email, subject: "#{post.title} favorited")
+  end
 end
