@@ -41,12 +41,12 @@ class Post < ActiveRecord::Base
 private
 
  def create_favorite
-   post.user.create
+   user.favorites.create(post: self)
  end
 
  def send_user_email
-   post.favorites.each do |favorite|
-     FavoriteMailer.new_post(favorite.user, post, self).deliver_now
-  end 
+   favorites.each do |favorite|
+     FavoriteMailer.new_post(favorite.user, self).deliver_now
+  end
  end
 end

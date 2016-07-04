@@ -4,9 +4,9 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
-    <h1>"You favorite <%= @post.title %>"</h1>
+    <h1>"You favorited <%= @post.title %>"</h1>
     <p>
-      <%= @comment.body %>
+      <%= @post.body %>
     </p>
     <p>
       <%= link_to "View Post", topic_post_url(@post.topic, @post, anchor: "post-#{@post.id}") %>
