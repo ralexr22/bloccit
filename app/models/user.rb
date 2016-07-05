@@ -21,6 +21,14 @@ class User < ActiveRecord::Base
     "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{size}"
   end
 
+  def has_posts?
+   self.posts
+  end
+
+  def has_comments?
+    self.comments
+  end
+
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy
