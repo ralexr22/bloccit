@@ -24,7 +24,7 @@ RSpec.describe Topic, type: :model do
 
    describe "publicly_viewable" do
      it "returns a collection of public topics" do
-       expect(topics).to be(public)
+       expect(Topic.publicly_viewable).to eq([@public_topic])
      end
    end
 
