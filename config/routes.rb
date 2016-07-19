@@ -26,6 +26,9 @@ resources :sessions, only: [:new, :create, :destroy]
     namespace :v1 do
       resources :users, only: [:index, :show, :create, :update]
       resources :topics, except: [:edit, :new]
+      resources :topics, only: [] do
+        resources :posts, only: [:create, :destroy, :update]
+      end 
     end
   end
 
